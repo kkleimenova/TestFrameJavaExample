@@ -1,3 +1,4 @@
+import com.test.example.pages.PagesNavigation;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
 import io.github.bonigarcia.wdm.InternetExplorerDriverManager;
@@ -5,10 +6,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 
-import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 
 public class BaseClass {
@@ -28,16 +31,23 @@ public class BaseClass {
             driver = new FirefoxDriver();
         }
         driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     @AfterTest
     public void tearDown() {
+        driver.manage().deleteAllCookies();
         driver.close();
     }
 
-    @Test(description = "Verifies opening application")
-    public void test() throws IOException {
-        driver.get("http://google.com");
-        Assert.assertEquals(driver.getTitle(), "Google", "ER: Title is incorrect.");
+    @Test(description = "Verifies google search")
+    public void searchTest() {
+        PagesNavigation navigator = new PagesNavigation(driver);
+        navigator.openMainPage().assertMainPageIsLoaded()
+                .enterSearchText()
+                .clickSubmitButton()
+                .assertResultsFound()
+                .redirectOnSearchedElement();
     }
 }
+

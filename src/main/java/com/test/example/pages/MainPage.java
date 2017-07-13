@@ -1,4 +1,4 @@
-package com.test.example;
+package com.test.example.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,15 +10,9 @@ public class MainPage {
     By submitButton = By.id("_fZl");
 
     private WebDriver driver;
-    private ResultsPage resultsPage;
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
-    }
-
-    public MainPage openMainPage() {
-        driver.get("http://google.com");
-        return this;
     }
 
     public MainPage enterSearchText() {
@@ -28,15 +22,12 @@ public class MainPage {
 
     public ResultsPage clickSubmitButton() {
         driver.findElement(submitButton).click();
-        return resultsPage;
+        return new ResultsPage(driver);
     }
 
-    public void assertMainPageIsLoaded(){
+    public MainPage assertMainPageIsLoaded() {
         Assert.assertEquals(driver.getTitle(), "Google", "ER: Title is incorrect.");
-    }
-
-    public void assertResultsFound(){
-
+        return this;
     }
 
 }

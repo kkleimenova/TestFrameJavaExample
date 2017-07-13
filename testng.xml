@@ -5,19 +5,19 @@
     <test name="ChromeTest">
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="BaseClass" />
+            <class name="BaseClass"/>
         </classes>
     </test>
     <test name="IETest">
-    <parameter name="browser" value="ie"/>
-    <classes>
-        <class name="BaseClass" />
-    </classes>
+        <parameter name="browser" value="ie"/>
+        <classes>
+            <class name="BaseClass"/>
+        </classes>
     </test>
     <test name="FFTest">
         <parameter name="browser" value="firefox"/>
         <classes>
-            <class name="BaseClass" />
+            <class name="BaseClass"/>
         </classes>
     </test>
 </suite>
