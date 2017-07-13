@@ -1,4 +1,4 @@
-import com.test.example.pages.PagesNavigation;
+import com.test.example.pages.MainPage;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
 import io.github.bonigarcia.wdm.InternetExplorerDriverManager;
@@ -42,8 +42,9 @@ public class BaseClass {
 
     @Test(description = "Verifies google search")
     public void searchTest() {
-        PagesNavigation navigator = new PagesNavigation(driver);
-        navigator.openMainPage().assertMainPageIsLoaded()
+        MainPage mainPage = new MainPage(driver).openMainPage().assertMainPageIsLoaded();
+
+        mainPage
                 .enterSearchText()
                 .clickSubmitButton()
                 .assertResultsFound()
