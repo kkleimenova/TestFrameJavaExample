@@ -1,4 +1,5 @@
 import com.test.example.pages.MainPage;
+import com.test.example.pages.Page;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
 import io.github.bonigarcia.wdm.InternetExplorerDriverManager;
@@ -10,7 +11,6 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import java.util.concurrent.TimeUnit;
 
 
@@ -36,19 +36,23 @@ public class BaseClass {
 
     @AfterTest
     public void tearDown() {
-        driver.manage().deleteAllCookies();
-        driver.close();
+        //driver.manage().deleteAllCookies();
+        //driver.close();
     }
 
     @Test(description = "Verifies google search")
-    public void searchTest() {
-        MainPage mainPage = new MainPage(driver).openMainPage().assertMainPageIsLoaded();
-
-        mainPage
+    public void searchTest() throws InterruptedException {
+        Page page = new Page(driver);
+        page.mainPage
+                .openMainPage()
+                .assertMainPageIsLoaded()
                 .enterSearchText()
-                .clickSubmitButton()
+                .clickSubmitButton();
+        page.resultsPage
                 .assertResultsFound()
                 .redirectOnSearchedElement();
+
+
     }
 }
 
