@@ -2,10 +2,14 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Suite" thread-count="1" parallel="tests">
+    <listeners>
+        <listener class-name="org.testng.reporters.EmailableReporter" />
+        <listener class-name="page.structure.TestMgNGListener" />
+    </listeners>
     <test name="ChromeTest">
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="BaseClass"/>
+            <class name="tests.BaseClass"/>
         </classes>
     </test>
 </suite>
