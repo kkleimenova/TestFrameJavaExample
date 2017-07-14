@@ -1,4 +1,4 @@
-package com.test.example.pages;
+package page.structure;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,17 +8,17 @@ import org.testng.Assert;
 
 public class MainPage {
 
-    @FindBy(id="lst-ib")
+    @FindBy(id = "lst-ib")
     @CacheLookup
     private WebElement searchField;
-    @FindBy(id="_fZl")
+    @FindBy(id = "_fZl")
     @CacheLookup
     private WebElement submitButton;
 
     private WebDriver driver;
 
     public MainPage(WebDriver driver) {
-        this.driver=driver;
+        this.driver = driver;
     }
 
     public MainPage openMainPage() {
@@ -36,7 +36,7 @@ public class MainPage {
     }
 
     public MainPage assertMainPageIsLoaded() {
-        Assert.assertEquals(driver.getTitle(), "Google", "ER: Title is incorrect.");
+        Assert.assertEquals(driver.getTitle(), "Google1", "ER: Title is incorrect.");
         return this;
     }
 
