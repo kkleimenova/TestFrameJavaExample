@@ -1,11 +1,9 @@
 package com.test.example.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
 public class MainPage {
@@ -20,13 +18,12 @@ public class MainPage {
     private WebDriver driver;
 
     public MainPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+        this.driver=driver;
     }
 
     public MainPage openMainPage() {
         driver.get("http://google.com");
-        return new MainPage(driver);
+        return this;
     }
 
     public MainPage enterSearchText() {
@@ -34,9 +31,8 @@ public class MainPage {
         return this;
     }
 
-    public ResultsPage clickSubmitButton() {
+    public void clickSubmitButton() {
         submitButton.click();
-        return new ResultsPage(driver);
     }
 
     public MainPage assertMainPageIsLoaded() {
