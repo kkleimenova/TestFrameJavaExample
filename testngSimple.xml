@@ -4,7 +4,7 @@
 <suite name="Suite" thread-count="1" parallel="tests">
     <listeners>
         <listener class-name="org.testng.reporters.EmailableReporter" />
-        <listener class-name="page.structure.TestMgNGListener" />
+        <listener class-name="tools.CustomITestListener" />
     </listeners>
     <test name="ChromeTest">
         <parameter name="browser" value="chrome"/>
